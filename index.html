@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMICalculator</title>
+
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+        
+</head>
+<body class="bg-dark">
+    
+    <div class="row p-5 d-flex align-items-center justify-content-around ">
+        <div class="col p-5">
+            <img class="rounded" style="width: 400px; height: 400px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlC633aS3ECbMu-h_WbhwrwMQLCKKs_UBPcQ&s" alt="">
+        </div>
+        <div class="col p-5 text-center">
+            <h1 class="mb-5 text-danger">Calculate your BMI</h1>
+            <input id="height" class="form-control mb-3" placeholder="Enter your height" type="text">
+            <input id="weight" class="form-control mb-5" placeholder="Enter your weight" type="text">
+            <button class="mb-5 btn btn-primary" onclick="calculateBmi()">calculate</button>
+            <button class="mb-5 btn btn-secondary" onclick="resetForm()">reset</button>
+           <div id="result" class="text-success "></div>
+        </div>
+    </div>
+
+    <script>
+        function calculateBmi(){
+
+        let height=document.getElementById("height").value
+        let weight=document.getElementById("weight").value
+
+        if(!weight || !height){
+            document.getElementById("result").innerHTML="Please enter both height and weight"
+            
+        }
+
+        height=height/100
+        console.log(height)
+        console.log(weight);
+        
+
+    let bmi = (weight / (height * height)).toFixed(2);
+    
+
+    let category = "";
+      if (bmi < 18.5) {
+        category = "You are underweight.";
+      } else if (bmi < 24.9) {
+        category = "You have a normal weight.";
+      } else if (bmi < 29.9) {
+        category = "You are overweight.";
+      } else if(bmi>30) {
+        category = "You are obese.";
+      }else{
+        category="Please enter height and weight";
+      }
+
+     document.getElementById("result").innerHTML=
+      `<div class="alert alert-success text-secondary"><b>BMI:</b> ${bmi}<br> <span class="text-success">${category}</span></div>`;
+
+    }
+
+     function resetForm() {
+      document.getElementById("weight").value = "";
+      document.getElementById("height").value = "";
+      document.getElementById("result").innerHTML = "";
+    }
+        
+
+    </script>
+
+</body>
+</html>
